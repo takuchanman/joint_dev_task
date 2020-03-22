@@ -95,9 +95,7 @@ def q11
   sports = ["サッカー", "バスケ", "野球", ["フットサル", "野球"], "水泳", "ハンドボール", ["卓球", "サッカー", "ボルダリング"]]
 
   # 以下に回答を記載
-  sports = sports.flatten
-  sports.uniq!
-  sports.each.with_index(1) do |sports, index|
+  sports.flatten.uniq!.each.with_index(1) do |sports, index|
     puts "No.#{index}  #{sports}"
   end
 end
@@ -130,18 +128,11 @@ def q15
   data2 = { name: "yamada", hobby: "baseball", role: "normal" }
 
   # 以下に回答を記載
-  if data1.include?(:age)
-    puts "OK"
-  else
-    puts "NG"
+  data = [data1, data2]
+  data.each do |data|
+  result = (data.include?(:age)) ? ("OK") : ("NG")
+    puts result
   end
-
-  if data2.include?(:age)
-    puts "OK"
-  else
-    puts "NG"
-  end
-
 end
 
 def q16
@@ -195,7 +186,20 @@ end
 
 class UserQ18
   # 以下に回答を記載
+  attr_accessor :name, :age
 
+  def initialize(**params)
+    @name = params[:name]
+    @age = params[:age]
+  end
+
+  def introduce
+    if @age >= 20
+      puts "こんにちは，#{@name}と申します。宜しくお願いいたします。"
+    else
+      puts "はいさいまいど〜，#{@name}です！！！"
+    end
+  end
 end
 
 def q18
@@ -209,9 +213,10 @@ end
 
 class Item
   # 以下を修正して下さい
+  attr_accessor :name
 
-  def initialize(name)
-    @name = name
+  def initialize(**params)
+    @name = params[:name]
   end
 end
 
@@ -223,14 +228,38 @@ end
 
 class UserQ20
   # 以下に回答を記載
+  attr_accessor :name, :age
 
+  def initialize(**params)
+    @name = params[:name]
+    @age = params[:age]
+  end
 end
 
 class Zoo
   # 以下に回答を記載
+  attr_accessor :name, :entry_fee
 
+  def initialize(**params)
+    @zoo_name = params[:name]
+    @entry_fee = params[:entry_fee]
+  end
+
+  def info_entry_fee(user)
+
+    price  = case user.age
+      when 0 .. 5
+        @entry_fee[:infant]
+      when 6 .. 12
+        @entry_fee[:children]
+      when 13 .. 64
+        @entry_fee[:adult]
+      when 65 .. 120
+        @entry_fee[:senior]
+      end
+    puts "#{user.name}さんの入場料金は #{price}円です。"
+  end
 end
-
 
 def q20
   # ここは変更しないで下さい（動物園・ユーザー情報は変更していただいてOKです）
