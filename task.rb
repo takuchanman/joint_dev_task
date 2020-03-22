@@ -186,8 +186,6 @@ end
 
 class UserQ18
   # 以下に回答を記載
-  attr_accessor :name, :age
-
   def initialize(**params)
     @name = params[:name]
     @age = params[:age]
@@ -195,9 +193,9 @@ class UserQ18
 
   def introduce
     if @age >= 20
-      puts "こんにちは，#{@name}と申します。宜しくお願いいたします。"
+      print "こんにちは，#{@name}と申します。宜しくお願いいたします。"
     else
-      puts "はいさいまいど〜，#{@name}です！！！"
+      print "はいさいまいど〜，#{@name}です！！！"
     end
   end
 end
@@ -213,10 +211,10 @@ end
 
 class Item
   # 以下を修正して下さい
-  attr_accessor :name
+  attr_reader :name
 
-  def initialize(**params)
-    @name = params[:name]
+  def initialize(name:)
+    @name = name
   end
 end
 
@@ -228,7 +226,7 @@ end
 
 class UserQ20
   # 以下に回答を記載
-  attr_accessor :name, :age
+  attr_reader :name, :age
 
   def initialize(**params)
     @name = params[:name]
@@ -238,8 +236,6 @@ end
 
 class Zoo
   # 以下に回答を記載
-  attr_accessor :name, :entry_fee
-
   def initialize(**params)
     @zoo_name = params[:name]
     @entry_fee = params[:entry_fee]
